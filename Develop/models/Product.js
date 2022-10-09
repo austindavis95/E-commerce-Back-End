@@ -21,19 +21,30 @@ Product.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    user_id: {
+    price: {
       type: DataTypes.INTEGER,
-      references: {
-        model: 'user',
-        key: 'id'
+      allowNull: false,
+      validate: {
+        isDecimal: true,
       }
+      
     },
-    post_id: {
+    stock: {
       type: DataTypes.INTEGER,
-      references: {
-        model: 'post',
+      allowNull: false,
+      validate: {
+        isNumeric: true,
+        
+      }
+
+    },
+    catagory_id: {
+      type: DataTypes.INTEGER,
+      reference: {
+        model: 'category',
         key: 'id'
       }
+
     }
   },
   {
