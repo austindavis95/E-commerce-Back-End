@@ -2,7 +2,7 @@ const { Model, DataTypes } = require('sequelize');
 
 const sequelize = require('../config/connection.js');
 
-class Category extends Model {}
+class Category extends Model { }
 
 Category.init(
   {
@@ -17,8 +17,8 @@ Category.init(
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-          // this means their needs to be at least four characters in the category
-          len: [4]
+        // this means their needs to be at least four characters in the category
+        len: [4]
       }
     }
   },
@@ -27,7 +27,7 @@ Category.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'Category',
+    modelName: 'category',
   }
 );
 
