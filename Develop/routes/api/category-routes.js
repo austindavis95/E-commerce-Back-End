@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
     ]
   })
 
-  .then(dbUserData => res.json(dbUserData))
+  .then(dbCategoryData => res.json(dbCategoryData))
     .catch(err => {
       console.log(err);
       res.status(500).json(err);
@@ -34,7 +34,7 @@ router.get('/:id', (req, res) => {
       include: [
         {
           model: Product,
-          attributes: ['product_name', 'price', 'stock', 'category_id']
+          attributes: ['product_name', 'category_id', 'stock', 'price']
         },
       ]
     })
@@ -54,6 +54,16 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
   // create a new category
+    // expects Categorys name
+    Category.create({
+      id: req.body.username,
+      category_name: req.body.category_name,
+    })
+      .then(dbCategoryData => res.json(dbCategoryData))
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
 });
 
 router.put('/:id', (req, res) => {
