@@ -70,6 +70,20 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
   // update a tag's name by its `id` value
+  Tag.update(req.body, {
+    where: {id: req.params.id  }
+  })
+  .then(dbTabData => {
+    if (!dbTabData[0]) {
+      res.status(404).json({ message: 'No tab was found with this id!' });
+      return;
+    }
+    res.json(dbTabData);
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
 });
 
 router.delete('/:id', (req, res) => {
